@@ -1,0 +1,43 @@
+﻿@model BusesModel
+
+@{
+    ViewData["Title"] = "Nuevo Bus";
+}
+
+<h1>Nuevp Bus</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="id_Buses" class="control-label"></label>
+                <input asp-for="id_Buses" class="form-control" />
+                <span asp-validation-for="id_Buses" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Capacidad" class="control-label"></label>
+                <select class="form-select" asp-for="Capacidad" asp-items="@ViewBag.rutasBuses">
+                    <option value="">Seleccione</option>
+                </select>
+                <span asp-validation-for="Capacidad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+
+                <a asp-action="Index">Regresar al listado</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

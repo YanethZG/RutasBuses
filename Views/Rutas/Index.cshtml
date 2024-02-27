@@ -1,0 +1,53 @@
+﻿@model IEnumerable<RutasModel>
+@{
+    ViewData["Title"] = "Listado de Rutas";
+}
+
+<h1>Listado de Rutas</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="mt-3 mb-3">
+                <a asp-action="Create" asp-controller="Buses" class="btn btn-success">
+                    Nuevo Bus
+                </a>
+            </div>
+
+            <table class="table table-bordered table-striped table-responsive" id="facultiesTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre Ruta</th>
+                        <th>Valor Pasaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var rutas in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(item => rutas.id_Rutas)</td>
+                            <td>@Html.DisplayFor(item => rutas.Nombre_Ruta)</td>
+                            <td>@Html.DisplayFor(item => rutas.Valor_Pasaje)</td>
+                            <td>
+                                <a asp-controller="Rutas"
+                                   asp-action="Edit"
+                                   asp-route-id="@rutas.id_Rutas"
+                                   class="btn btn-primary">
+                                    Editar
+                                </a>
+                                <a asp-controller="rutas"
+                                   asp-action="Delete"
+                                   asp-route-id="@rutas.id_Rutas"
+                                   class="btn btn-danger">
+                                    Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

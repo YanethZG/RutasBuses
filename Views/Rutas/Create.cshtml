@@ -1,0 +1,43 @@
+﻿@model RutasModel
+
+@{
+    ViewData["Title"] = "Nueva Ruta";
+}
+
+<h1>Nueva Ruta</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="id_Rutas" class="control-label"></label>
+                <input asp-for="id_Rutas" class="form-control" />
+                <span asp-validation-for="id_Rutas" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Nombre_Ruta" class="control-label"></label>
+                <select class="form-select" asp-for="Nombre_Ruta" asp-items="@ViewBag.rutasBuses">
+                    <option value="">Seleccione</option>
+                </select>
+                <span asp-validation-for="Nombre_Ruta" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+
+                <a asp-action="Index">Regresar al listado</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
